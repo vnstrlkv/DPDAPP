@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://dpd.ru/ws/geography/2015-05-20" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="DPDGeography2Service" targetNamespace="http://dpd.ru/ws/geography/2015-05-20" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://wstest.dpd.ru:80/services/geography2?xsd=1" namespace="http://dpd.ru/ws/geography/2015-05-20" />
+    </xsd:schema>
+  </types>
+  <message name="getPossibleExtraService">
+    <part name="parameters" element="tns:getPossibleExtraService" />
+  </message>
+  <message name="getPossibleExtraServiceResponse">
+    <part name="parameters" element="tns:getPossibleExtraServiceResponse" />
+  </message>
+  <message name="WSFault">
+    <part name="fault" element="tns:WSFault" />
+  </message>
+  <message name="getTerminalsSelfDelivery2">
+    <part name="parameters" element="tns:getTerminalsSelfDelivery2" />
+  </message>
+  <message name="getTerminalsSelfDelivery2Response">
+    <part name="parameters" element="tns:getTerminalsSelfDelivery2Response" />
+  </message>
+  <message name="getParcelShops">
+    <part name="parameters" element="tns:getParcelShops" />
+  </message>
+  <message name="getParcelShopsResponse">
+    <part name="parameters" element="tns:getParcelShopsResponse" />
+  </message>
+  <message name="getCitiesCashPay">
+    <part name="parameters" element="tns:getCitiesCashPay" />
+  </message>
+  <message name="getCitiesCashPayResponse">
+    <part name="parameters" element="tns:getCitiesCashPayResponse" />
+  </message>
+  <message name="getStoragePeriod">
+    <part name="parameters" element="tns:getStoragePeriod" />
+  </message>
+  <message name="getStoragePeriodResponse">
+    <part name="parameters" element="tns:getStoragePeriodResponse" />
+  </message>
+  <portType name="DPDGeography2">
+    <operation name="getPossibleExtraService">
+      <input wsam:Action="http://dpd.ru/ws/geography/2015-05-20/DPDGeography2/getPossibleExtraServiceRequest" message="tns:getPossibleExtraService" />
+      <output wsam:Action="http://dpd.ru/ws/geography/2015-05-20/DPDGeography2/getPossibleExtraServiceResponse" message="tns:getPossibleExtraServiceResponse" />
+      <fault wsam:Action="http://dpd.ru/ws/geography/2015-05-20/DPDGeography2/getPossibleExtraService/Fault/WSFault" name="WSFault" message="tns:WSFault" />
+    </operation>
+    <operation name="getTerminalsSelfDelivery2">
+      <input wsam:Action="http://dpd.ru/ws/geography/2015-05-20/DPDGeography2/getTerminalsSelfDelivery2Request" message="tns:getTerminalsSelfDelivery2" />
+      <output wsam:Action="http://dpd.ru/ws/geography/2015-05-20/DPDGeography2/getTerminalsSelfDelivery2Response" message="tns:getTerminalsSelfDelivery2Response" />
+      <fault wsam:Action="http://dpd.ru/ws/geography/2015-05-20/DPDGeography2/getTerminalsSelfDelivery2/Fault/WSFault" name="WSFault" message="tns:WSFault" />
+    </operation>
+    <operation name="getParcelShops">
+      <input wsam:Action="http://dpd.ru/ws/geography/2015-05-20/DPDGeography2/getParcelShopsRequest" message="tns:getParcelShops" />
+      <output wsam:Action="http://dpd.ru/ws/geography/2015-05-20/DPDGeography2/getParcelShopsResponse" message="tns:getParcelShopsResponse" />
+      <fault wsam:Action="http://dpd.ru/ws/geography/2015-05-20/DPDGeography2/getParcelShops/Fault/WSFault" name="WSFault" message="tns:WSFault" />
+    </operation>
+    <operation name="getCitiesCashPay">
+      <input wsam:Action="http://dpd.ru/ws/geography/2015-05-20/DPDGeography2/getCitiesCashPayRequest" message="tns:getCitiesCashPay" />
+      <output wsam:Action="http://dpd.ru/ws/geography/2015-05-20/DPDGeography2/getCitiesCashPayResponse" message="tns:getCitiesCashPayResponse" />
+      <fault wsam:Action="http://dpd.ru/ws/geography/2015-05-20/DPDGeography2/getCitiesCashPay/Fault/WSFault" name="WSFault" message="tns:WSFault" />
+    </operation>
+    <operation name="getStoragePeriod">
+      <input wsam:Action="http://dpd.ru/ws/geography/2015-05-20/DPDGeography2/getStoragePeriodRequest" message="tns:getStoragePeriod" />
+      <output wsam:Action="http://dpd.ru/ws/geography/2015-05-20/DPDGeography2/getStoragePeriodResponse" message="tns:getStoragePeriodResponse" />
+      <fault wsam:Action="http://dpd.ru/ws/geography/2015-05-20/DPDGeography2/getStoragePeriod/Fault/WSFault" name="WSFault" message="tns:WSFault" />
+    </operation>
+  </portType>
+  <binding name="DPDGeography2PortBinding" type="tns:DPDGeography2">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="getPossibleExtraService">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="WSFault">
+        <soap:fault use="literal" name="WSFault" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getTerminalsSelfDelivery2">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="WSFault">
+        <soap:fault use="literal" name="WSFault" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getParcelShops">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="WSFault">
+        <soap:fault use="literal" name="WSFault" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getCitiesCashPay">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="WSFault">
+        <soap:fault use="literal" name="WSFault" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getStoragePeriod">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="WSFault">
+        <soap:fault use="literal" name="WSFault" namespace="" />
+      </fault>
+    </operation>
+  </binding>
+  <service name="DPDGeography2Service">
+    <port name="DPDGeography2Port" binding="tns:DPDGeography2PortBinding">
+      <soap:address location="http://wstest.dpd.ru:80/services/geography2" />
+    </port>
+  </service>
+</definitions>

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://dpd.ru/ws/geography/2015-05-20" targetNamespace="http://dpd.ru/ws/geography/2015-05-20" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="WSFault" type="tns:WSFault" />
+  <xs:element name="getCitiesCashPay" type="tns:getCitiesCashPay" />
+  <xs:element name="getCitiesCashPayResponse" type="tns:getCitiesCashPayResponse" />
+  <xs:element name="getParcelShops" type="tns:getParcelShops" />
+  <xs:element name="getParcelShopsResponse" type="tns:getParcelShopsResponse" />
+  <xs:element name="getPossibleExtraService" type="tns:getPossibleExtraService" />
+  <xs:element name="getPossibleExtraServiceResponse" type="tns:getPossibleExtraServiceResponse" />
+  <xs:element name="getStoragePeriod" type="tns:getStoragePeriod" />
+  <xs:element name="getStoragePeriodResponse" type="tns:getStoragePeriodResponse" />
+  <xs:element name="getTerminalsSelfDelivery2" type="tns:getTerminalsSelfDelivery2" />
+  <xs:element name="getTerminalsSelfDelivery2Response" type="tns:getTerminalsSelfDelivery2Response" />
+  <xs:complexType name="getPossibleExtraService">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="request" type="tns:dpdPossibleESRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="dpdPossibleESRequest">
+    <xs:sequence>
+      <xs:element name="auth" type="tns:auth" />
+      <xs:element minOccurs="0" name="pickup" type="tns:dpdPossibleESPickupDelivery" />
+      <xs:element minOccurs="0" name="delivery" type="tns:dpdPossibleESPickupDelivery" />
+      <xs:element name="selfPickup" type="xs:boolean" />
+      <xs:element name="selfDelivery" type="xs:boolean" />
+      <xs:element name="serviceCode" type="xs:string" />
+      <xs:element minOccurs="0" name="pickupDate" type="xs:date" />
+      <xs:element minOccurs="0" name="options" type="tns:dpdPossibleESOption" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="auth">
+    <xs:sequence>
+      <xs:element name="clientNumber" type="xs:long" />
+      <xs:element name="clientKey" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="dpdPossibleESPickupDelivery">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cityId" type="xs:decimal" />
+      <xs:element minOccurs="0" name="terminalCode" type="xs:string" />
+      <xs:element minOccurs="0" name="index" type="xs:decimal" />
+      <xs:element minOccurs="0" name="cityName" type="xs:string" />
+      <xs:element minOccurs="0" name="regionCode" type="xs:string" />
+      <xs:element minOccurs="0" name="countryCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="dpdPossibleESOption">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="option" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getPossibleExtraServiceResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:dpdPossibleESResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="dpdPossibleESResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="resultCode" type="xs:string" />
+      <xs:element minOccurs="0" name="resultMessage" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="extraService" type="tns:possibleExtraService" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="possibleExtraService">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="code" type="xs:string" />
+      <xs:element minOccurs="0" name="name" type="xs:string" />
+      <xs:element name="isPaid" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="WSFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="code" type="xs:string" />
+      <xs:element minOccurs="0" name="message" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getTerminalsSelfDelivery2">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="auth" type="tns:auth" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getTerminalsSelfDelivery2Response">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:selfTerminals" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="selfTerminals">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="terminal" nillable="true" type="tns:terminalSelf" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="terminalSelf">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="terminalCode" type="xs:string" />
+      <xs:element minOccurs="0" name="terminalName" type="xs:string" />
+      <xs:element minOccurs="0" name="address" type="tns:address" />
+      <xs:element minOccurs="0" name="geoCoordinates" type="tns:geoCoordinates" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="schedule" type="tns:schedule" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="extraService" nillable="true" type="tns:extraService" />
+      <xs:element minOccurs="0" name="services">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="serviceCode" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="address">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cityId" type="xs:long" />
+      <xs:element minOccurs="0" name="countryCode" type="xs:string" />
+      <xs:element minOccurs="0" name="regionCode" type="xs:string" />
+      <xs:element minOccurs="0" name="regionName" type="xs:string" />
+      <xs:element minOccurs="0" name="cityCode" type="xs:string" />
+      <xs:element minOccurs="0" name="cityName" type="xs:string" />
+      <xs:element minOccurs="0" name="index" type="xs:string" />
+      <xs:element minOccurs="0" name="street" type="xs:string" />
+      <xs:element minOccurs="0" name="streetAbbr" type="xs:string" />
+      <xs:element minOccurs="0" name="houseNo" type="xs:string" />
+      <xs:element minOccurs="0" name="building" type="xs:string" />
+      <xs:element minOccurs="0" name="structure" type="xs:string" />
+      <xs:element minOccurs="0" name="ownership" type="xs:string" />
+      <xs:element minOccurs="0" name="descript" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="geoCoordinates">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="latitude" type="xs:decimal" />
+      <xs:element minOccurs="0" name="longitude" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="schedule">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="operation" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="timetable" type="tns:timetable" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="timetable">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="weekDays" type="xs:string" />
+      <xs:element minOccurs="0" name="workTime" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="extraService">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="esCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="params" type="tns:extraServiceParam" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="extraServiceParam">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string" />
+      <xs:element minOccurs="0" name="value" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getParcelShops">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="request" type="tns:dpdParcelShopRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="dpdParcelShopRequest">
+    <xs:sequence>
+      <xs:element name="auth" type="tns:auth" />
+      <xs:element minOccurs="0" name="countryCode" type="xs:string" />
+      <xs:element minOccurs="0" name="regionCode" type="xs:string" />
+      <xs:element minOccurs="0" name="cityCode" type="xs:string" />
+      <xs:element minOccurs="0" name="cityName" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getParcelShopsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:dpdParcelShops" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="dpdParcelShops">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="parcelShop" nillable="true" type="tns:parcelShop" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="parcelShop">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="code" type="xs:string" />
+      <xs:element minOccurs="0" name="parcelShopType" type="xs:string" />
+      <xs:element minOccurs="0" name="state" type="xs:string" />
+      <xs:element minOccurs="0" name="address" type="tns:address" />
+      <xs:element minOccurs="0" name="brand" type="xs:string" />
+      <xs:element minOccurs="0" name="clientDepartmentNum" type="xs:string" />
+      <xs:element minOccurs="0" name="geoCoordinates" type="tns:geoCoordinates" />
+      <xs:element minOccurs="0" name="limits" type="tns:limits" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="schedule" type="tns:schedule" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="extraService" nillable="true" type="tns:extraService" />
+      <xs:element minOccurs="0" name="services">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="serviceCode" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="limits">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="maxShipmentWeight" type="xs:decimal" />
+      <xs:element minOccurs="0" name="maxWeight" type="xs:decimal" />
+      <xs:element minOccurs="0" name="maxLength" type="xs:decimal" />
+      <xs:element minOccurs="0" name="maxWidth" type="xs:decimal" />
+      <xs:element minOccurs="0" name="maxHeight" type="xs:decimal" />
+      <xs:element minOccurs="0" name="dimensionSum" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCitiesCashPay">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="request" type="tns:dpdCitiesCashPayRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="dpdCitiesCashPayRequest">
+    <xs:sequence>
+      <xs:element name="auth" type="tns:auth" />
+      <xs:element minOccurs="0" name="countryCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getCitiesCashPayResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:city" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="city">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cityId" type="xs:long" />
+      <xs:element minOccurs="0" name="countryCode" type="xs:string" />
+      <xs:element minOccurs="0" name="countryName" type="xs:string" />
+      <xs:element minOccurs="0" name="regionCode" type="xs:int" />
+      <xs:element minOccurs="0" name="regionName" type="xs:string" />
+      <xs:element minOccurs="0" name="cityCode" type="xs:string" />
+      <xs:element minOccurs="0" name="cityName" type="xs:string" />
+      <xs:element minOccurs="0" name="abbreviation" type="xs:string" />
+      <xs:element minOccurs="0" name="indexMin" type="xs:string" />
+      <xs:element minOccurs="0" name="indexMax" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getStoragePeriod">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="request" type="tns:storagePeriodRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="storagePeriodRequest">
+    <xs:sequence>
+      <xs:element name="auth" type="tns:auth" />
+      <xs:element name="terminalCode" type="xs:string" />
+      <xs:element minOccurs="0" name="serviceCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getStoragePeriodResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:dpdTerminals" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="dpdTerminals">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="terminal" nillable="true" type="tns:terminalStoragePeriods" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="terminalStoragePeriods">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="terminalCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="services" type="tns:storagePeriod" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="storagePeriod">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="serviceCode" type="xs:string" />
+      <xs:element name="days" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
